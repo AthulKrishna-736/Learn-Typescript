@@ -1,0 +1,22 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore build files (if you're compiling TypeScript)
+build/
+dist/
+
+# Ignore logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+
+node_modules
+package.json
+package-lock.json
+tsconfig.json
