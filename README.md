@@ -29,7 +29,7 @@ TypeScript is a **powerful** superset of JavaScript that adds **static typing, i
 ```bash
 # Clone the repo
 git clone https://github.com/AthulKrishna-736/Learn-Typescript.git
-cd learn-typescript-with-me
+cd Learn-Typescript
 ```
 
 - Run TypeScript files:
