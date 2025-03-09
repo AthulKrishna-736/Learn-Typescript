@@ -245,3 +245,79 @@ class Dog extends Animal1 {
 const myDog = new Dog('Buddy');
 myDog.bark();
 myDog.move(10);
+
+
+abstract class Polygon {
+    public abstract getArea(): number;
+
+    public toString(): string {
+        return `Polygon area = ${this.getArea()}`
+    }
+}
+
+class Rectangle3 extends Polygon {
+    public constructor(protected readonly width: number, protected readonly height: number){
+        super()
+    }
+
+    public getArea(): number {
+        return this.width * this.height
+    }
+}
+
+interface Swimmer {
+    swim(distance: number): void;
+}
+
+class Fish implements Swimmer {
+    constructor(public name: string){}
+
+    public swim(distance: number): void {
+        console.log(`${this.name} swam ${distance} meters`)
+    }
+}
+
+const fish = new Fish('Goldfish')
+fish.swim(5);
+
+
+class Animal2 {
+    public makeSound(): void {
+        console.log('malabaarrrrr rrrrrr prrrrr')
+    }
+}
+
+class Dog1 extends Animal2 {
+    public makeSound(): void {
+        console.log('woof woof!')
+    }
+}
+
+const animal2 = new Animal2()
+animal2.makeSound()
+
+const dog1 = new Dog1()
+dog1.makeSound()
+
+abstract class Animal3 {
+    constructor(public name: string){}
+
+    abstract makeSound(): void;
+
+    public move(distance: number): void {
+        console.log(`${this.name} moved ${distance} meters`)
+    }
+}
+
+class Cat extends Animal3 {
+    constructor(name: string) {
+        super(name)
+    }
+    public makeSound(): void {
+        console.log('meow!')
+    }
+}
+
+const cat = new Cat('whiskers')
+cat.makeSound()
+cat.move(5)
