@@ -321,3 +321,72 @@ class Cat extends Animal3 {
 const cat = new Cat('whiskers')
 cat.makeSound()
 cat.move(5)
+
+
+interface User {
+    name: string;
+    age: number;
+}
+
+const partialUser: Partial<User> = { name: 'Alice' };
+
+interface User1 {
+    name?: string;
+    age?: number;
+}
+
+const user: Required<User1> = { name: 'Alice', age: 30 };
+
+interface User2 {
+    name: string;
+    age: number;
+}
+
+const user1: Readonly<User2> = { name: 'Alice', age: 30 }
+
+// user1.age = 32 // error cant assign its readonly
+
+interface User3 {
+    name: string;
+    age: number;
+    email: string;
+}
+
+const user2: Pick<User3, 'name' | 'email'> = { name: 'Alice', email: 'alice@example.com' }
+
+interface User4 {
+    name: string;
+    age: number;
+    email: string;
+}
+
+const user3: Omit<User4, 'age'> = { name: 'alice', email: 'sample@gmail.com' }
+
+
+const scores: Record<string, number> = {
+    alice: 90,
+    bob: 85,
+};
+
+type T = Exclude<'a' | 'b' | 'c', 'a'>;
+
+type T1 = NonNullable<string | number | undefined>;
+
+function greet(name: string, age: number): void {
+    console.log(`Hello, ${name}. You are ${age} years old.`)
+}
+
+type Params = Parameters<typeof greet>
+
+
+interface Person4 {
+    name: string;
+    age: number;
+}
+
+function printPersonProperties(person: Person, properties: keyof Person){
+    console.log(`Printing person property `)
+}
+
+
+
