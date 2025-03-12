@@ -99,9 +99,9 @@ class Person {
     name: string = 'John Doe';
 }
 
-const person1 = new Person();
-person1.name = 'athul';
-console.log(person1.name)
+// const person1 = new Person();
+// person1.name = 'athul';
+// console.log(person1.name)
 
 
 function toUpperCase(target: any, propertyKey: string) {
@@ -151,6 +151,92 @@ class Product {
 
 const item = new Product(5)
 console.log(item.price)
+
+
+
+class Logger {
+    log(message: string) {
+        console.log(message)
+    }
+}
+
+class MockLogger {
+    log(message: string) {
+        console.log(`[mock] ${message}`);
+    }
+}
+
+class UserService {
+    constructor(private logger: Logger) { }
+
+    createUser(name: string) {
+        this.logger.log(`User ${name} create.`)
+    }
+}
+
+// const logger = new Logger()
+const mockLogger = new MockLogger();
+const userService = new UserService(mockLogger);
+userService.createUser('Alice');
+
+
+function Logger2(target: Function) {
+    console.log(`Logging class: ${target.name}`)
+}
+
+@Logger2
+class Person2 {
+    constructor(public name: string) {
+        console.log(`Person create: ${this.name}`)
+    }
+}
+
+const p1 = new Person2('Athul')
+
+function LogMethod(target: any, methodName: string, descriptor: PropertyDescriptor) {
+    const originalMethod = descriptor.value
+
+    descriptor.value = function (...args: any[]) {
+        console.log(`Method ${methodName} called with args: ${args}`);
+        return originalMethod.apply(this, args);
+    }
+}
+
+class MathOperation {
+    @LogMethod
+    add(a: number, b: number): number {
+        return a + b
+    }
+}
+
+const math = new MathOperation()
+console.log(math.add(2, 3))
+
+
+
+class Service {
+    getMessage() {
+        return 'Hello from service!';
+    }
+}
+
+class Consumer {
+    constructor(private service: Service) { }
+
+    privateMessage() {
+        console.log(this.service.getMessage())
+    }
+}
+
+const serviceInstance = new Service()
+const consumerInstance = new Consumer(serviceInstance);
+consumerInstance.privateMessage();
+
+
+
+
+
+
 
 
 
